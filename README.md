@@ -149,22 +149,19 @@ L'application complète est accessible sur le port **7007** avec nginx comme rev
 
 # 5 - Tester le projet :
 
-Le projet dispose de **88 tests** au total : 40 tests unitaires et 48 tests end-to-end.
+## Tests unitaires
 
-## Tests unitaires (40 tests)
-
-### Frontend (Vitest — 28 tests)
+### Frontend (Vitest)
 
 ```bash
 cd frontend
 npm run test:run
 ```
-
 Fichiers testés :
-- `src/utils/fileUtils.test.ts` — détection du type de fichier, formatage de taille, types acceptés
-- `src/utils/globalUtils.test.ts` — fusion de classes CSS Tailwind, décodage JWT
+- `src/utils/fileUtils.test.ts` — détection du type de fichier, formatage, types 
+- `src/utils/globalUtils.test.ts` — fusion de classes CSS, décodage JWT
 
-### Backend (Jest — 12 tests)
+### Backend
 
 ```bash
 cd backend
@@ -172,27 +169,17 @@ npm test
 ```
 
 Fichier testé :
-- `src/utils/storageUtils.test.ts` — calcul du pourcentage de stockage, formatage de taille
+- `src/utils/storageUtils.test.ts` — calcul du stockage
 
-## Tests End-to-End (48 tests)
+## Tests End-to-End
 
 Les tests E2E utilisent **Playwright** et s'exécutent sur 3 navigateurs (Chromium, Firefox, WebKit).
-
-> **Pré-requis** : l'application doit tourner sur `http://localhost:7007` (via Docker).
-
-### Installation (première fois uniquement)
-
-```bash
-cd playwright
-npm install
-npx playwright install
-```
 
 ### Lancer les tests
 
 ```bash
 cd playwright
-npm test                  # Tous les tests (3 navigateurs)
+npm test                  
 npm run test:chromium     # Chromium uniquement
 npm run test:ui           # Interface graphique interactive
 ```
@@ -204,16 +191,6 @@ cd playwright
 npx playwright show-report
 ```
 
-### Tests couverts
-
-| Suite | Nb tests | Fonctionnalités |
-| ----- | -------- | --------------- |
-| 01-signup | 6 | Formulaire d'inscription, validation email/mot de passe, soumission |
-| 02-login | 10 | Formulaire de connexion, erreurs, liens de navigation, redirection |
-
-## Interface de test d'emails
-
-```bash
-cd backend
-npm run email
-```
+Tests couverts :
+01-signup - Formulaire d'inscription, validation email/mot de passe
+02-login - Formulaire de connexion, redirection 
