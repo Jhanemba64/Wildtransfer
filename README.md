@@ -145,33 +145,75 @@ L'application complète est accessible sur le port **7007** avec nginx comme rev
 -   **Nom d'utilisateur :** `postgres`
 -   **Mot de passe :** `example`
 -   **Base de données :** `postgres`
+  
 
 # 5 - Tester le projet :
 
-## Tests unitaires :
+Le projet dispose de **88 tests** au total : 40 tests unitaires et 48 tests end-to-end.
 
-### Terminal 1 - Frontend
+## Tests unitaires (40 tests)
 
-```
-  npm test
-```
+### Frontend (Vitest — 28 tests)
 
-### Terminal 2 - Backend
-
-```
-  npm test
+```bash
+cd frontend
+npm run test:run
 ```
 
-### Terminal 3 - Storage API
+Fichiers testés :
+- `src/utils/fileUtils.test.ts` — détection du type de fichier, formatage de taille, types acceptés
+- `src/utils/globalUtils.test.ts` — fusion de classes CSS Tailwind, décodage JWT
 
+### Backend (Jest — 12 tests)
+
+```bash
+cd backend
+npm test
 ```
-  npm test
+
+Fichier testé :
+- `src/utils/storageUtils.test.ts` — calcul du pourcentage de stockage, formatage de taille
+
+## Tests End-to-End (48 tests)
+
+Les tests E2E utilisent **Playwright** et s'exécutent sur 3 navigateurs (Chromium, Firefox, WebKit).
+
+> **Pré-requis** : l'application doit tourner sur `http://localhost:7007` (via Docker).
+
+### Installation (première fois uniquement)
+
+```bash
+cd playwright
+npm install
+npx playwright install
 ```
 
-## Interface de test d'emails :.
+### Lancer les tests
 
-### Terminal - Backend
-
+```bash
+cd playwright
+npm test                  # Tous les tests (3 navigateurs)
+npm run test:chromium     # Chromium uniquement
+npm run test:ui           # Interface graphique interactive
 ```
-  npm email
+
+### Consulter le rapport HTML
+
+```bash
+cd playwright
+npx playwright show-report
+```
+
+### Tests couverts
+
+| Suite | Nb tests | Fonctionnalités |
+| ----- | -------- | --------------- |
+| 01-signup | 6 | Formulaire d'inscription, validation email/mot de passe, soumission |
+| 02-login | 10 | Formulaire de connexion, erreurs, liens de navigation, redirection |
+
+## Interface de test d'emails
+
+```bash
+cd backend
+npm run email
 ```
