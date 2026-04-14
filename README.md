@@ -158,7 +158,7 @@ cd frontend
 npm run test:run
 ```
 Fichiers testés :
-- `src/utils/fileUtils.test.ts` — détection du type de fichier, formatage, types 
+- `src/utils/fileUtils.test.ts` — détection du type de fichier, formatage, types
 - `src/utils/globalUtils.test.ts` — fusion de classes CSS, décodage JWT
 
 ### Backend
